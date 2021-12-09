@@ -60,5 +60,5 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 ## Autor
 
-* **Paulo Vaz** - [LinkedIn](https://www.linkedin.com/in/paulo-vaz-05296a46/)
+* **Paulo Vaz** - [LinkedIn](https://www.linkedin.com/in/paulovaz-dev/)
 
