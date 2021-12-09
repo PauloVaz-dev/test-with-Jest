@@ -1,5 +1,5 @@
 
-## Testes Unitários com TDD (Test Driven Development) com Jest
+## Testes Unitários TDD (Test Driven Development) com Jest
 
 * https://jestjs.io
 * https://nestjs.com
@@ -17,10 +17,10 @@ Projeto com Nest usando a lib Jest para fazer test unitário.
 ```bash
 
 # Clone este repositório
-$ git clone https://github.com/PauloVaz-dev/createUserAndSendEmailWithTemplate.git
+$ git clone https://github.com/PauloVaz-dev/test-with-Jest
 
 # Acesse a pasta do projeto no terminal/cmd
-$ cd createUserAndSendEmailWithTemplate
+$ cd test-with-Jest
 $ npm install
 ```
 
