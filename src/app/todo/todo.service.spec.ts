@@ -28,7 +28,7 @@ describe('TodoService', () => {
 
   const todoRepositoryFake = {
     //findAll: jest.fn(() => Promise.resolve([])),
-    find: jest.fn().mockReturnValue([]),
+    find: jest.fn().mockResolvedValue([]),
     findOne: jest.fn(),
     create: jest.fn(),
     save: jest.fn(),
