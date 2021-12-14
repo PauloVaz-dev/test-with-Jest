@@ -19,7 +19,7 @@ describe('TodoService', () => {
     {
       id: '222',
       task: 'teste',
-      isDone: true,
+      isDone: false,
       createdAt: null,
       updatedAt: null,
       deletedAt: null,
@@ -28,7 +28,8 @@ describe('TodoService', () => {
 
   const todoRepositoryFake = {
     //findAll: jest.fn(() => Promise.resolve([])),
-    find: jest.fn().mockResolvedValue([]),
+    //find: jest.fn().mockResolvedValue([]),
+    find: jest.fn(),
     findOne: jest.fn(),
     create: jest.fn(),
     save: jest.fn(),
@@ -54,7 +55,11 @@ describe('TodoService', () => {
 
   it('Should de able retrieval all todos', async () => {
     todoRepositoryFake.find = jest.fn(() => Promise.resolve(todosFake));
-    expect(await todoService.findAll()).toEqual(todosFake);
+    const todos = await todoService.findAll();
+    expect(todos).toEqual(todosFake);
+    expect(todos).toHaveLength(2);
+    expect(todos[0]).toHaveProperty('isDone');
+    expect(todos[1]).toHaveProperty('isDone', false);
   });
 
   it('Should be able retrieval a todo', async () => {
@@ -73,14 +78,20 @@ describe('TodoService', () => {
     todoRepositoryFake.findOne = jest.fn(() => Promise.resolve());
     todoRepositoryFake.create = jest.fn(() => todosFake[1]);
     todoRepositoryFake.save = jest.fn(() => Promise.resolve());
-    const todo = await todoService.create({ task: '111', isDone: true });
+    const todo = await todoService.create(todosFake[1]);
     expect(todo).toEqual(todosFake[1]);
   });
 
   it('Should not be able create a todo exists', async () => {
     todoRepositoryFake.findOne = jest.fn(() => Promise.resolve(todosFake[0]));
-    expect(todoService.create({ task: '111', isDone: true })).rejects.toThrow(
+    /* expect(todoService.create({ task: '111', isDone: true })).rejects.toThrow(
       new Error('todo Already exist!'),
-    );
+    ); */
+
+    try {
+      await todoService.create({ task: '111', isDone: true });
+    } catch (err) {
+      expect(err.message).toBe('todo Already exist!');
+    }
   });
 });
