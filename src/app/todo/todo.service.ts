@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { TodoEntity } from './todo.entity';
+import { usuarioRepository } from './usuarioRepository';
 
 type TodoArgs = {
   id?: string;
@@ -48,6 +49,11 @@ export class TodoService {
     await this.todoRepository.save(todoCreated);
 
     return todoCreated;
+  }
+
+  async findUser() {
+    const usuario = usuarioRepository.getUsuario();
+    return usuario;
   }
 
   async update({ id, task, isDone }: TodoArgs) {
